@@ -1,0 +1,11 @@
+.wrapper {
+    background-color: var(--main_color);
+    border-radius: 24px 24px 0px 0px; 
+}
+.container {
+    width: var(--container_width);
+    max-width: var(--container_maxwidth);
+    margin: 0 auto;
+    padding: 10px 0;
+    min-height: 100px;
+}
