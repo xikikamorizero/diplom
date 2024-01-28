@@ -2,11 +2,25 @@
 import { Context } from "@/shared/api";
 import style from "./Profile.module.css";
 import { observer } from "mobx-react-lite";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Profile as ProfileIcon } from "iconsax-react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 export const Profile = observer(() => {
     const { store } = useContext(Context);
+    let router = useRouter();
+    const pathname = usePathname();
+    let path = useSearchParams();
+    let search = path.get("123");
+    let test = usePathname();
+    const current = new URLSearchParams(Array.from(path.entries()));
+
+    useEffect(() => {
+        console.log(search);
+        console.log(path);
+        console.log(current);
+    }, []);
+    console.log();
     return (
         <div className={style.profileContainer}>
             {store.isAuth ? (
@@ -17,7 +31,18 @@ export const Profile = observer(() => {
                     }}
                 ></div>
             ) : (
-                <ProfileIcon size="30" color="#000000" />
+                <ProfileIcon
+                    size="30"
+                    color="#000000"
+                    onClick={() => {
+                        router.push("/login");
+                        // current.set("123", "lox3");
+                        // current.set("123", "lox3");
+                        // const search = current.toString();
+                        // const query = search ? `?${search}` : "";
+                        // router.push(`${pathname}${query}`);
+                    }}
+                />
             )}
         </div>
     );

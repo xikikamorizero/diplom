@@ -11,7 +11,7 @@ export const Header = () => {
                 <div className={style.navbar}>
                     <div className={style.linkContainer}>
                         <NavLink href={"/"} text={"home"} />
-                        <NavLink href={"/person"} text={"person"} />
+                        <NavLink href={"/users"} text={"users"} />
                     </div>
                     <div className={style.logo}>
                         <Image

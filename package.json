@@ -28,6 +28,7 @@
     "@editorjs/table": "^2.3.0",
     "@editorjs/warning": "^1.4.0",
     "@types/katex": "^0.16.7",
+    "antd": "^5.13.3",
     "axios": "^1.6.0",
     "framer-motion": "^10.18.0",
     "iconsax-react": "^0.0.8",

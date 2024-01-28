@@ -2,6 +2,13 @@ export interface authType {
     email: string;
     password: string;
 }
+export interface LoginResponseType {
+   token:string
+}
+export interface defaultParamType {
+    page: number;
+    limit: number;
+}
 export interface userType {
     id: number;
     email: string;
@@ -30,5 +37,7 @@ export interface userType {
 export interface usersType {
     users: userType[];
     totalUsers: number;
+    page: number;
     pageCount: number;
+    limit: number;
 }

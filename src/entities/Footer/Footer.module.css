@@ -8,4 +8,6 @@
     margin: 0 auto;
     padding: 10px 0;
     min-height: 100px;
+    color: var(--secondary_text_color);
+    overflow: hidden;
 }

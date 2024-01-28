@@ -1,0 +1,9 @@
+.container {
+    width: 100%;
+    height: max-content;
+}
+
+.card {
+    background: red;
+    height: 200px;
+}

@@ -7,6 +7,8 @@ class Auth {
     constructor() {
         makeAutoObservable(this);
     }
+    public readonly login = services.Auth.login;
+    public readonly registration = services.Auth.registration;
 }
 class User {
     constructor() {
@@ -21,8 +23,21 @@ export class Store {
     public loader = false;
     public error = 0;
     public isAuth = false;
+    private token = null;
 
     constructor() {
         makeAutoObservable(this);
+        this.loadFromLocalStorage = this.loadFromLocalStorage.bind(this);
+        this.loadFromLocalStorage();
+    }
+
+    loadFromLocalStorage() {
+        const storedBookmarks = localStorage.getItem("bookmarks");
+        if (storedBookmarks) {
+            this.token = JSON.parse(storedBookmarks);
+        }
+    }
+    saveToLocalStorage() {
+        localStorage.setItem("bookmarks", JSON.stringify(this.token));
     }
 }

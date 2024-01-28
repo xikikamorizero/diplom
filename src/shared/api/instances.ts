@@ -3,16 +3,23 @@ import { baseUrl } from "./const";
 import { store } from "./context";
 
 export const $voxmentor_api_public = axios.create({
-    baseURL: baseUrl
+    baseURL: baseUrl,
+    headers: {},
 });
 
-$voxmentor_api_public.interceptors.request.use((config) => {
-    if (!config?.headers) {
-        throw new Error(
-            "Expected 'config' and 'config.headers' not to be undefined"
-        );
+$voxmentor_api_public.interceptors.request.use((config: any) => {
+    if (config.url.includes("/auth/login") || config.url.includes("/users")) {
+        return config;
+    } else {
+        if (!localStorage.getItem("token")) {
+            throw new Error("not authorized", config.url);
+        } else {
+            config.headers.Authorization = `Bearer ${localStorage.getItem(
+                "token"
+            )}`;
+            return config;
+        }
     }
-    return config;
 });
 
 $voxmentor_api_public.interceptors.response.use(
@@ -21,12 +28,8 @@ $voxmentor_api_public.interceptors.response.use(
         return response;
     },
     (error) => {
-        if (!error.response) {
-            store.error = 600;
-            console.error("Отсутствует подключение к сети");
-        } else {
-            store.error = error.response.status;
-            console.error("Ошибка:", error.response.status);
+        if (error.response.status == 401) {
+            localStorage.removeItem("token");
         }
         return Promise.reject(error);
     }

@@ -15,6 +15,7 @@ body {
     padding: 0;
     height: 100%;
     background: #000;
+    color: var(--main_text_color);
     /* background-image: url(../assets/background.jpg); */
     background-position: center;
     background-repeat: no-repeat;
@@ -31,14 +32,20 @@ body {
     max-width: var(--container_maxwidth);
     margin: 0 auto;
     padding: 10px 0;
+    overflow: hidden;
 }
 
 :root {
     --main_color: #fff;
-    --secondary_color: #fd853a;
-    --main_text_color:#fff;
+    --secondary_color: #000000;
+    --main_text_color: #ffffff;
+    --secondary_text_color: #000;
+    --subtitle_text_color: #3b3b3b;
 
     --container_width: 90%;
     --container_maxwidth: 1600px;
     --container_maxheight: 900px;
+}
+.ce-inline-toolbar{
+    background-color: var(--secondary_color);
 }
