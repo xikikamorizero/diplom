@@ -1,6 +1,6 @@
 .cardContainer {
     width: 100%;
-    padding: 5% 5% 0 5%;
+    padding: 3% 3% 0 3%;
     box-sizing: border-box;
 }
 .cardContainer:hover {
@@ -12,13 +12,13 @@
     object-fit: cover;
     aspect-ratio: 1 / 1;
 }
-.name {
+.title {
     color: var(--secondary_text_color);
     font-size: 15px;
     font-weight: 600;
     height: 22px;
 }
-.specialization {
+.subtitle {
     color: var(--subtitle_text_color);
     font-size: 15px;
     height: 22px;

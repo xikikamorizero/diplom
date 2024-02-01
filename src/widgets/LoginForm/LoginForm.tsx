@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { Context } from "@/shared/api";
 import Link from "next/link";
 
-
 export const LoginForm = () => {
     let router = useRouter();
     const { store } = useContext(Context);
@@ -18,6 +17,13 @@ export const LoginForm = () => {
             .login(username, password)
             .then((response) => {
                 localStorage.setItem("token", response.data.token);
+                store.user
+                    .getProfile()
+                    .then((response) => {
+                        store.profile = response.data;
+                        console.log(store.profile);
+                    })
+                    .catch();
             })
             .catch((error) => {
                 console.log(error);
@@ -44,7 +50,14 @@ export const LoginForm = () => {
                 type={"text"}
                 placeholder={"password"}
             />
-            <div className={style.buttonLogin} onClick={()=>{Login()}}>log in</div>
+            <div
+                className={style.buttonLogin}
+                onClick={() => {
+                    Login();
+                }}
+            >
+                log in
+            </div>
             <div className={style.newAccBlock}>
                 <p className={style.newAccBlockText}>no account ?</p>
                 <Link href={"/registration"}>create</Link>

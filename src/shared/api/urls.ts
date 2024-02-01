@@ -11,24 +11,48 @@ export const user = {
     get() {
         return "/users";
     },
-    getProfessor(){
-        return "/users/professor"
+    getUser(id: string) {
+        return `/users/${id}`;
     },
-    subscribe(id:number){
-        return `​/users​/subscribe​/${id}`
+    getProfessor() {
+        return "/users/professor";
     },
-    unsubscribe(id:number){
-        return `​/users​/unsubscribe​/${id}`
+    getProfile() {
+        return "/users/profile/me";
     },
-    subscriptions(){
-        return '/users/subscriptions'
+    like(id: string) {
+        return `/users/like/${id}`;
     },
-    subscribers(){
-        return '/users/subscribers'
-    }
+    unlike(id: string) {
+        return `/users/unlike/${id}`;
+    },
+    dislike(id: string) {
+        return `/users/dislike/${id}`;
+    },
+    undislike(id: string) {
+        return `/users/undislike/${id}`;
+    },
+
+    subscribe(id: string) {
+        return `​/users​/subscribe​/${id}`;
+    },
+    unsubscribe(id: string) {
+        return `​/users​/unsubscribe​/${id}`;
+    },
+    subscriptions() {
+        return "/users/subscriptions";
+    },
+    subscribers() {
+        return "/users/subscribers";
+    },
 };
-export const course={
-    get(id:number) {
+export const portfolio = {
+    get() {
+        return "/portfolio";
+    },
+};
+export const course = {
+    get(id: string) {
         return `​/users​/course${id}`;
     },
 };

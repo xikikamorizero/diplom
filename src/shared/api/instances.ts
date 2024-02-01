@@ -8,7 +8,8 @@ export const $voxmentor_api_public = axios.create({
 });
 
 $voxmentor_api_public.interceptors.request.use((config: any) => {
-    if (config.url.includes("/auth/login") || config.url.includes("/users")) {
+    // if (config.url.includes("/auth/login") || config.url.includes("/users")) {
+    if (config.url.includes("/auth/login")) {
         return config;
     } else {
         if (!localStorage.getItem("token")) {
@@ -30,6 +31,8 @@ $voxmentor_api_public.interceptors.response.use(
     (error) => {
         if (error.response.status == 401) {
             localStorage.removeItem("token");
+            store.profile = null;
+            store.isAuth = false;
         }
         return Promise.reject(error);
     }

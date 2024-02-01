@@ -4,19 +4,18 @@ import { types } from "@/shared/api";
 import { Context } from "./context";
 import { useContext, useEffect } from "react";
 
-export const useUsers = () => {
+export const usePortfolio = () => {
     const global_store = useContext(GlobalContext);
     const { store } = useContext(Context);
 
     useEffect(() => {
-        console.log("отправилось");
         if (!store.loading) {
             store.loading = true;
-            global_store.store.user
-                .getUsers({ page: store.page, limit: store.limit })
+            global_store.store.portfolio
+                .getPortfolioList({ page: store.page, limit: store.limit })
                 .then((response) => {
-                    store.users = response.data.users;
-                    store.count = response.data.totalUsers;
+                    store.portfolio = response.data.portfolio;
+                    store.count = response.data.totalPortfolio;
                     store.page = response.data.page;
                     store.page_count = response.data.pageCount;
                 })
@@ -31,7 +30,7 @@ export const useUsers = () => {
     }, [store.page]);
 
     return {
-        users: store.users,
+        portfolio: store.portfolio,
         page: store.page,
         pageCount: store.page_count,
         limit: store.limit,

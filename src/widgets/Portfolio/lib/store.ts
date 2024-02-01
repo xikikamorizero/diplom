@@ -2,7 +2,7 @@ import { types } from "@/shared/api";
 import { makeAutoObservable } from "mobx";
 
 export class Store {
-    public users: types.userType[] = [];
+    public portfolio: types.PortfolioType[] = [];
     public count: number | null = null;
     public page_count: number | null = null;
     public page: number = 1;
