@@ -17,6 +17,8 @@ class User {
     public readonly getUsers = services.User.getUsers;
     public readonly getUser = services.User.getUser;
     public readonly getProfile = services.User.getProfile;
+    public readonly getMyProject = services.User.getMyProject;
+    public readonly editProfile = services.User.editProfile;
     public readonly like = services.User.like;
     public readonly unlike = services.User.unlike;
     public readonly dislike = services.User.dislike;
@@ -29,12 +31,34 @@ class Portfolio {
         makeAutoObservable(this);
     }
     public readonly getPortfolioList = services.Portfolio.getPortfolio;
+    public readonly getPortfolio = services.Portfolio.getPortfolioItem;
+    public readonly create = services.Portfolio.create;
+    public readonly edit = services.Portfolio.edit;
+    public readonly delete = services.Portfolio.delete;
+}
+class Course {
+    constructor() {
+        makeAutoObservable(this);
+    }
+    public readonly create = services.Course.create;
+    public readonly getCourseById = services.Course.getCourseById;
+}
+class Lesson{
+    constructor() {
+        makeAutoObservable(this);
+    }
+    public readonly getLesson = services.Lesson.getLessonItem;
+    public readonly create = services.Lesson.create;
+    public readonly edit = services.Lesson.edit;
+    public readonly delete = services.Lesson.delete;
 }
 
 export class Store {
     public readonly auth = new Auth();
     public readonly user = new User();
     public readonly portfolio = new Portfolio();
+    public readonly course = new Course();
+    public readonly lesson = new Lesson();
     public profile: types.userType | null = null;
     public loader = false;
     public error = 0;

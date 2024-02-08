@@ -30,6 +30,7 @@
     "@types/katex": "^0.16.7",
     "antd": "^5.13.3",
     "axios": "^1.6.0",
+    "editorjs-react-renderer": "^3.5.1",
     "framer-motion": "^10.18.0",
     "iconsax-react": "^0.0.8",
     "katex": "^0.16.9",

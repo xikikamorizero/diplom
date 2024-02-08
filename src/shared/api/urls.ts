@@ -20,6 +20,12 @@ export const user = {
     getProfile() {
         return "/users/profile/me";
     },
+    getMyProject() {
+        return "/users/project/me";
+    },
+    editProfile() {
+        return "/users";
+    },
     like(id: string) {
         return `/users/like/${id}`;
     },
@@ -50,9 +56,38 @@ export const portfolio = {
     get() {
         return "/portfolio";
     },
+    getPortfolio(id: string) {
+        return `/portfolio/${id}`;
+    },
+    create() {
+        return "/portfolio";
+    },
+    edit(id: string) {
+        return `/portfolio/${id}`;
+    },
+    delete(id: string) {
+        return `/portfolio/${id}`;
+    },
 };
 export const course = {
     get(id: string) {
-        return `​/users​/course${id}`;
+        return `/courses/${id}`;
+    },
+    create() {
+        return "/courses";
+    },
+};
+export const lesson = {
+    create() {
+        return "/lessons";
+    },
+    getLesson(id: string) {
+        return `/lessons/${id}`;
+    },
+    edit(id: string) {
+        return `/lessons/${id}`;
+    },
+    delete(id: string) {
+        return `/lessons/${id}`;
     },
 };

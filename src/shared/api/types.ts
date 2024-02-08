@@ -5,7 +5,49 @@ export interface authType {
     email: string;
     password: string;
 }
+export interface createPortfolio {
+    title: string;
+    content: string;
+    image: any;
+}
+export interface createCourse {
+    title: string;
+    description: string;
+    level: string;
+    category: string;
+    image: any;
+}
+export interface createLesson {
+    courseId: string;
+    title: string;
+    content: string;
+    description: string;
+    lesson_number: string;
+    reading_materials?: string[];
+    image: any;
+}
+export interface editProfile {
+    name?: string | null;
+    image?: any;
+    description?: string | null;
+    place_of_work?: string | null;
+    science_degree?: string | null;
+    categories?: string | null;
+    contacts?: string | null;
+}
+export interface editLesson {
+    title: string;
+    content: string;
+    description: string;
+    lesson_number: string;
+    reading_materials?: string[];
+    image: any;
+}
 export interface LikeAndDislikeResponse {
+    success: boolean;
+    message: string;
+}
+export interface DeleteResponse {
     success: boolean;
     message: string;
 }
@@ -111,4 +153,40 @@ export interface PortfolioListType {
     page: number;
     pageCount: number;
     limit: number;
+}
+
+export interface LessonType {
+    id: number;
+    title: string;
+    content: string;
+    description: string;
+    image: string;
+    lesson_number: string;
+    reading_materials: string[];
+    courseId: number;
+}
+
+export interface CourseType {
+    id: number;
+    title: string;
+    description: string;
+    level: string;
+    category: string;
+    image: string;
+    authorId: number;
+    lessonCount: number;
+    lessons: LessonType[];
+}
+
+export interface CourseListType {
+    courses: CourseType[];
+    totalCourses: number;
+    page: number;
+    pageCount: number;
+    limit: number;
+}
+
+export interface ProjectType {
+    portfolio: PortfolioType[];
+    course: CourseType[];
 }

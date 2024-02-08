@@ -21,7 +21,9 @@ export const LoginForm = () => {
                     .getProfile()
                     .then((response) => {
                         store.profile = response.data;
+                        store.isAuth = true;
                         console.log(store.profile);
+                        router.push("/");
                     })
                     .catch();
             })

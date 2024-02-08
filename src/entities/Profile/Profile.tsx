@@ -1,36 +1,57 @@
+"use client";
 import style from "./Profile.module.css";
 import { baseUrl } from "@/shared/api/const";
 import { Profile as ProfileIcon } from "iconsax-react";
 import { Categories } from "@/shared";
 import { Avatar, Tooltip } from "antd";
-import Link from "next/link";
 import { types } from "@/shared/api";
+import { useState } from "react";
+import { CardProject } from "@/shared";
+import Link from "next/link";
+import { ImageInput, WrapperEditBlock } from "@/shared";
 
 type PropsType = {
     user: types.userType | null;
     myProf: boolean;
+    editMode?: boolean;
+    setEditMode?: (a: boolean) => void;
+    name?: string | null;
+    setName?: (a: string) => void;
+    description?: string | null;
+    setDescription?: (a: string) => void;
+    placeOfWork?: string | null;
+    setPlaceOfWork?: (a: string) => void;
+    scienceDegree?: string | null;
+    setScienceDegree?: (a: string) => void;
+    contacts?: string | null;
+    setContacts?: (a: string) => void;
+    image?: File | null;
+    setImage?: (a: File | null) => void;
     isLiked?: boolean;
     isDisliked?: boolean;
     isSubscribe?: boolean;
+    portfolio?: types.PortfolioType[];
+    course?: types.CourseType[];
+    EditProfile?: () => void;
 };
 
-export const Profile = ({
-    user,
-    myProf,
-    isLiked,
-    isDisliked,
-    isSubscribe,
-}: PropsType) => {
+export const Profile = ({ ...props }: PropsType) => {
+    const [portfolio, setPortfolio] = useState(true);
     return (
         <div className={style.container}>
             <div className={style.userInfo}>
                 <div className={style.avatarContainer}>
-                    {user?.avatar ? (
+                    {props.editMode ? (
+                        <ImageInput
+                            setImage={props.setImage}
+                            image={props.image}
+                        />
+                    ) : props.user?.avatar ? (
                         <img
                             className={style.avatar}
                             draggable={false}
                             alt={"avatar"}
-                            src={baseUrl + user?.avatar}
+                            src={baseUrl + props.user?.avatar}
                         />
                     ) : (
                         <ProfileIcon size={"100%"} />
@@ -39,31 +60,83 @@ export const Profile = ({
                 <div className={style.likesContainer}>
                     <div
                         className={`${style.likeAndDis} ${style.like} ${
-                            isLiked ? style.likeAndDisActive : null
+                            props.isLiked ? style.likeAndDisActive : null
                         }`}
                     >
                         <div></div>
-                        <p>{user?.likes}</p>
+                        <p>{props.user?.likes}</p>
                     </div>
                     <div
                         className={`${style.likeAndDis} ${style.dislike} ${
-                            isDisliked ? style.likeAndDisActive : null
+                            props.isDisliked ? style.likeAndDisActive : null
                         }`}
                     >
                         <div></div>
-                        <p>{user?.dislikes}</p>
+                        <p>{props.user?.dislikes}</p>
                     </div>
                 </div>
-                <p className={style.userName}>{user?.name}</p>
-                <p className={style.place_of_work}>{user?.place_of_work}</p>
-                {!myProf ? (
-                    <div className={style.subscribe}>
-                        {isSubscribe ? "unsubscribe" : "subscribe"}
+                <WrapperEditBlock
+                    value={props.name}
+                    setValue={props.setName}
+                    placeholder={"add name"}
+                    editMode={props.editMode}
+                    block={<p className={style.userName}>{props.user?.name}</p>}
+                />
+
+                <WrapperEditBlock
+                    value={props.placeOfWork}
+                    setValue={props.setPlaceOfWork}
+                    placeholder={"add place of work"}
+                    editMode={props.editMode}
+                    block={
+                        <p className={style.place_of_work}>
+                            {props.user?.place_of_work}
+                        </p>
+                    }
+                />
+
+                {!props.myProf ? (
+                    <div className={style.sub_func}>
+                        {props.isSubscribe ? "unsubscribe" : "subscribe"}
                     </div>
-                ) : null}
-                <p className={style.science_degree}>{user?.science_degree}</p>
-                <p className={style.contacts}>{user?.contacts}</p>
-                <Categories categories={user?.categories} />
+                ) : (
+                    <div
+                        className={style.sub_func}
+                        onClick={() => {
+                            if (props.setEditMode) {
+                                props.setEditMode(!props.editMode);
+                            }
+                            if (props.editMode && props.EditProfile) {
+                                props.EditProfile();
+                            }
+                        }}
+                    >
+                        {props.editMode ? "Save" : "Edit profile"}
+                    </div>
+                )}
+
+                <WrapperEditBlock
+                    value={props.scienceDegree}
+                    setValue={props.setScienceDegree}
+                    placeholder={"add science degree"}
+                    editMode={props.editMode}
+                    block={
+                        <p className={style.science_degree}>
+                            {props.user?.science_degree}
+                        </p>
+                    }
+                />
+                <WrapperEditBlock
+                    value={props.contacts}
+                    setValue={props.setContacts}
+                    placeholder={"add contacts"}
+                    editMode={props.editMode}
+                    block={
+                        <p className={style.contacts}>{props.user?.contacts}</p>
+                    }
+                />
+
+                <Categories categories={props.user?.categories} />
 
                 <div className={style.subscribers}>
                     <p>subscribers:</p>
@@ -75,8 +148,8 @@ export const Profile = ({
                             backgroundColor: "var(--main_color)",
                         }}
                     >
-                        {user?.subscribers.length !== 0 ? (
-                            user?.subscribers.map((a, i) => (
+                        {props.user?.subscribers.length !== 0 ? (
+                            props.user?.subscribers.map((a, i) => (
                                 <Link
                                     href={`/users/${a.id}`}
                                     style={{ borderRadius: "50%" }}
@@ -98,10 +171,51 @@ export const Profile = ({
             </div>
             <div className={style.userProject}>
                 <div className={style.userWorkLinks}>
-                    <div>Portfolio</div>
-                    <div>Course</div>
+                    <div
+                        className={portfolio ? style.active : ""}
+                        onClick={() => {
+                            setPortfolio(true);
+                        }}
+                    >
+                        Portfolio
+                    </div>
+                    <div
+                        className={!portfolio ? style.active : ""}
+                        onClick={() => {
+                            setPortfolio(false);
+                        }}
+                    >
+                        Course
+                    </div>
                 </div>
-                <div className={style.projectContainer}></div>
+                <div className={style.projectWrapper}>
+                    <div className={style.projectContainer}>
+                        {portfolio
+                            ? props.portfolio?.map((a, i) => (
+                                  <CardProject
+                                      href={`/portfolio/${a.id}`}
+                                      image={a.image}
+                                      title={a.title}
+                                      key={i}
+                                  />
+                              ))
+                            : props.course?.map((a, i) => (
+                                  <CardProject
+                                      href={`/course/${a.id}`}
+                                      image={a.image}
+                                      title={a.title}
+                                      key={i}
+                                  />
+                              ))}
+                    </div>
+                </div>
+
+                <Link
+                    href={portfolio ? "/createPortfolio" : "/createCourse"}
+                    className={style.create}
+                >
+                    {portfolio ? "Create Project" : "Create Course"}
+                </Link>
             </div>
         </div>
     );

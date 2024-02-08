@@ -22,7 +22,7 @@ export const Portfolio = observer(() => {
             <Row gutter={[16, 16]}>
                 {data.portfolio?.map((a, i) => (
                     <Col xs={xsmall} sm={small} md={middle} lg={large} key={i}>
-                        <Link href={`/users/${a.id}`}>
+                        <Link href={`/portfolio/${a.id}`}>
                             <Card
                                 loading={false}
                                 src={a.image}

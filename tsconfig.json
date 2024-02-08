@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/features/module/module.js", "src/page/Main/Main.jsx", "src/page/EditPortfolio/EditPortfolio.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/features/module/module.js", "src/page/Main/Main.jsx", "src/page/EditPortfolio/EditPortfolio.jsx", "src/widgets/CreatePortfolio/CreatePortfolio.tsx", "src/page/PortfolioItem/PortfolioItem.tsx", "src/widgets/PortfolioItem/PortfolioItem.tsx", "src/widgets/Lesson/Lesson.tsx"],
   "exclude": ["node_modules"]
 }

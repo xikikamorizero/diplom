@@ -8,7 +8,8 @@ export const Main = observer(() => {
     const { store } = useContext(Context);
     console.log(store.isAuth);
     useEffect(() => {
-        store.user.getUsers()
+        store.user
+            .getUsers()
             .then((response) => {
                 console.log(response);
             })

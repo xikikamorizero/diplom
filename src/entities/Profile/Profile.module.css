@@ -42,7 +42,7 @@
     opacity: 0.5;
     user-select: none;
 }
-.likeAndDisActive{
+.likeAndDisActive {
     opacity: 1;
 }
 .likeAndDis div {
@@ -77,14 +77,15 @@
 }
 .userProject {
     width: 100%;
+    min-height: 450px;
     display: flex;
     flex-direction: column;
+    align-items: end;
     gap: 20px;
     padding: 0 2%;
 }
 .userWorkLinks {
     width: 100%;
-    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,14 +94,24 @@
     border-bottom: 2px solid var(--main_color);
 }
 .userWorkLinks div {
+    width: 100px;
+    color: var(--subtitle_text_color);
+    padding: 5px 10px;
+    text-align: center;
     cursor: pointer;
     user-select: none;
 }
+.projectWrapper {
+    width: 100%;
+    height: 450px;
+    overflow: scroll;
+}
 .projectContainer {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    column-gap: 10px;
+    row-gap: 5px;
 }
 .subscribers {
     display: flex;
@@ -108,17 +119,33 @@
     gap: 10px;
     font-size: 20px;
 }
-.subscribe{
+.sub_func {
     font-size: 20px;
     padding: 5px;
     text-align: center;
     background-color: var(--subtitle_text_color);
     user-select: none;
     border-radius: 10px;
-    border: 1px solid ;
+    border: 1px solid;
     cursor: pointer;
     transition: all 0.3s;
 }
-.subscribe:hover{
+.sub_func:hover {
     opacity: 0.8;
+}
+.active {
+    color: var(--main_text_color) !important;
+}
+.create {
+    width: max-content;
+    height: max-content;
+    padding: 5px 10px;
+    font-size: 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    user-select: none;
+    text-transform: uppercase;
+    color: var(--secondary_text_color);
+    background-color: var(--main_color);
+    cursor: pointer;
 }

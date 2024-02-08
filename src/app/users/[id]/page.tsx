@@ -8,11 +8,11 @@ type PropsType = {
 };
 
 export async function generateMetadata({ params }: PropsType) {
-    const user = await fetch(`http://localhost:5000/users/${params.id}`).then(
-        (res) => res.json()
-    );
+    const user = await fetch(`http://localhost:5000/users/${params.id}`)
+        .then((res) => res.json())
+        .catch((error) => null);
     return {
-        title: user.name ? user.name : `User ${params.id}`,
+        title: user?.name ? user.name : `User ${params.id}`,
     };
 }
 
