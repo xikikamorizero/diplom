@@ -11,3 +11,5 @@ export * from "./CreateCourse/CreateCourse";
 export * from "./Course/Course";
 export * from "./CreateLesson/CreateLesson";
 export * from "./Lesson/Lesson";
+export * from "./SubUnSub/SubUnSub";
+export * from './LikeDisLike/LikeDisLike';

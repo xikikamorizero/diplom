@@ -40,10 +40,10 @@ export const user = {
     },
 
     subscribe(id: string) {
-        return `​/users​/subscribe​/${id}`;
+        return `/users/subscribe/${id}`;
     },
     unsubscribe(id: string) {
-        return `​/users​/unsubscribe​/${id}`;
+        return `/users/unsubscribe/${id}`;
     },
     subscriptions() {
         return "/users/subscriptions";

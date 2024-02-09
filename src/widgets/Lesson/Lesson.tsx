@@ -51,31 +51,31 @@ export const Lesson = observer(({ lessonId }: PropsType) => {
                         editorData={JSON.parse(data.lesson.content)}
                     />
                 ) : null}
-                {/* {data.profile?.id == data.lesson?.userId && ( */}
-                <div className={style.buttonContainer}>
-                    <button
-                        disabled={!data.lesson}
-                        className={style.deleteButton}
-                        onClick={() => {
-                            data.DeletePortfolio();
-                        }}
-                    >
-                        Delete
-                    </button>
-                    <button
-                        disabled={!data.lesson}
-                        className={style.editButton}
-                        onClick={() => {
-                            if (data.editMode) {
-                                data.EditPortfolio();
-                            }
-                            data.setEditMode(!data.editMode);
-                        }}
-                    >
-                        {data.editMode ? "Save" : "Edit"}
-                    </button>
-                </div>
-                {/* )} */}
+                {data.profile?.id == Number(data.authorId) && (
+                    <div className={style.buttonContainer}>
+                        <button
+                            disabled={!data.lesson}
+                            className={style.deleteButton}
+                            onClick={() => {
+                                data.DeletePortfolio();
+                            }}
+                        >
+                            Delete
+                        </button>
+                        <button
+                            disabled={!data.lesson}
+                            className={style.editButton}
+                            onClick={() => {
+                                if (data.editMode) {
+                                    data.EditPortfolio();
+                                }
+                                data.setEditMode(!data.editMode);
+                            }}
+                        >
+                            {data.editMode ? "Save" : "Edit"}
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );

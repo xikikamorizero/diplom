@@ -2,7 +2,7 @@
 import { Context as GlobalContext } from "@/shared/api";
 import { Context } from "./context";
 import { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type PropsType = {
     lessonId: string;
@@ -12,7 +12,8 @@ export const useLesson = ({ lessonId }: PropsType) => {
     const global_store = useContext(GlobalContext);
     const { store } = useContext(Context);
     let router = useRouter();
-
+    let path = useSearchParams();
+    let authorId = path.get("author");
     const [editMode, setEditMode] = useState(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -37,7 +38,7 @@ export const useLesson = ({ lessonId }: PropsType) => {
                 {
                     title: title,
                     description: description,
-                    lesson_number:lessonNumber,
+                    lesson_number: lessonNumber,
                     content: dataEditor,
                     image: null,
                 }
@@ -87,6 +88,7 @@ export const useLesson = ({ lessonId }: PropsType) => {
     }, []);
 
     return {
+        authorId:authorId,
         lesson: store.lesson,
         loading: store.loading,
         profile: global_store.store.profile,
@@ -96,10 +98,10 @@ export const useLesson = ({ lessonId }: PropsType) => {
         setEditMode: setEditMode,
         title: title,
         setTitle: setTitle,
-        description:description,
-        setDescription:setDescription,
-        lessonNumber:lessonNumber,
-        setLessonNumber:setLessonNumber,
+        description: description,
+        setDescription: setDescription,
+        lessonNumber: lessonNumber,
+        setLessonNumber: setLessonNumber,
         uploadedImages: uploadedImages,
         setUploadedImages: setUploadedImages,
         dataEditor: dataEditor,

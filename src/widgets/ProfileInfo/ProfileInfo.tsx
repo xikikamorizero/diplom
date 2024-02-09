@@ -2,11 +2,15 @@
 import { Profile } from "@/entities/Profile/Profile";
 import style from "./ProfileInfo.module.css";
 import { observer } from "mobx-react-lite";
-import { useContext, useState } from "react";
-import { Context } from "@/shared/api";
+import { ReactNode } from "react";
 import { useProject } from "./lib/hook";
+import { LikeDisLike } from "../LikeDisLike/LikeDisLike";
 
-export const ProfileInfo = observer(() => {
+type PropsType = {
+    likedislikeC?: ReactNode;
+};
+
+export const ProfileInfo = observer(({ likedislikeC }: PropsType) => {
     const data = useProject();
     return (
         <div className={style.container}>
@@ -30,6 +34,13 @@ export const ProfileInfo = observer(() => {
                 course={data.course}
                 myProf={true}
                 EditProfile={data.EditProfile}
+                likeBlock={
+                    <LikeDisLike
+                        likes={data.profile?.likes}
+                        dislikes={data.profile?.dislikes}
+                        disabled={true}
+                    />
+                }
             />
         </div>
     );

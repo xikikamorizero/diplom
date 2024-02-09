@@ -30,7 +30,7 @@ export const Course = observer(({ courseId }: PropsType) => {
                             lg={large}
                             key={i}
                         >
-                            <Link href={`/lesson/${a.id}`}>
+                            <Link href={`/lesson/${a.id}?author=${data.course?.authorId}`}>
                                 <Card
                                     loading={false}
                                     src={a.image}

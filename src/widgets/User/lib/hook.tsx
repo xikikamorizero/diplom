@@ -12,6 +12,21 @@ export const useUser = ({ userId }: PropsType) => {
     const global_store = useContext(GlobalContext);
     const { store } = useContext(Context);
 
+    function isIdPresent(
+        arrayOfObjects:
+            | types.Likes[]
+            | types.Dislike[]
+            | types.Subscribers[]
+            | undefined,
+        targetId: string
+    ) {
+        if (arrayOfObjects) {
+            return arrayOfObjects.some((obj) => obj.id === Number(targetId));
+        } else {
+            return false;
+        }
+    }
+
     useEffect(() => {
         console.log(userId);
         if (!store.loading) {
@@ -28,25 +43,11 @@ export const useUser = ({ userId }: PropsType) => {
                     store.loading = false;
                 });
         }
-    }, []);
-
-    function Like(id: string) {
-        store.loadingLike = true;
-        global_store.store.user
-            .like({ id })
-            .then((response) => {
-                
-            })
-            .catch((error) => {
-                console.log("Like error");
-            })
-            .finally(() => {
-                store.loadingLike = false;
-            });
-    }
+    }, [global_store.store.update_profile]);
 
     return {
         user: store.user,
         myProfile: global_store.store.profile,
+        isIdPresent: isIdPresent,
     };
 };

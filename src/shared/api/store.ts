@@ -64,6 +64,7 @@ export class Store {
     public error = 0;
     public isAuth = false;
     private token: string | null = null;
+    public update_profile:boolean=false;
 
     constructor() {
         makeAutoObservable(this);
@@ -79,5 +80,9 @@ export class Store {
     }
     saveToLocalStorage() {
         localStorage.setItem("token", JSON.stringify(this.token));
+    }
+
+    updateProfile(){
+        this.update_profile = !this.update_profile;
     }
 }

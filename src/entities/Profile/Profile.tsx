@@ -5,7 +5,7 @@ import { Profile as ProfileIcon } from "iconsax-react";
 import { Categories } from "@/shared";
 import { Avatar, Tooltip } from "antd";
 import { types } from "@/shared/api";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { CardProject } from "@/shared";
 import Link from "next/link";
 import { ImageInput, WrapperEditBlock } from "@/shared";
@@ -33,6 +33,9 @@ type PropsType = {
     portfolio?: types.PortfolioType[];
     course?: types.CourseType[];
     EditProfile?: () => void;
+    subBlock?: ReactNode;
+    likeBlock?: ReactNode;
+    myiD?: number;
 };
 
 export const Profile = ({ ...props }: PropsType) => {
@@ -57,7 +60,8 @@ export const Profile = ({ ...props }: PropsType) => {
                         <ProfileIcon size={"100%"} />
                     )}
                 </div>
-                <div className={style.likesContainer}>
+                {props.likeBlock}
+                {/* <div className={style.likesContainer}>
                     <div
                         className={`${style.likeAndDis} ${style.like} ${
                             props.isLiked ? style.likeAndDisActive : null
@@ -74,7 +78,7 @@ export const Profile = ({ ...props }: PropsType) => {
                         <div></div>
                         <p>{props.user?.dislikes}</p>
                     </div>
-                </div>
+                </div> */}
                 <WrapperEditBlock
                     value={props.name}
                     setValue={props.setName}
@@ -96,9 +100,7 @@ export const Profile = ({ ...props }: PropsType) => {
                 />
 
                 {!props.myProf ? (
-                    <div className={style.sub_func}>
-                        {props.isSubscribe ? "unsubscribe" : "subscribe"}
-                    </div>
+                    props.subBlock
                 ) : (
                     <div
                         className={style.sub_func}
@@ -151,7 +153,11 @@ export const Profile = ({ ...props }: PropsType) => {
                         {props.user?.subscribers.length !== 0 ? (
                             props.user?.subscribers.map((a, i) => (
                                 <Link
-                                    href={`/users/${a.id}`}
+                                    href={
+                                        props.myiD == a.id
+                                            ? "/profile"
+                                            : `/users/${a.id}`
+                                    }
                                     style={{ borderRadius: "50%" }}
                                 >
                                     <Tooltip
