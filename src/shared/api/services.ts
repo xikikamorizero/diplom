@@ -2,13 +2,14 @@ import { AxiosResponse } from "axios";
 import { $voxmentor_api_public } from "./instances";
 import * as types from "./types";
 import * as urls from "./urls";
+import axios from "axios";
 
 export class Auth {
     static async login(
         email: string,
         password: string
     ): Promise<AxiosResponse<types.LoginResponseType>> {
-        return await $voxmentor_api_public.post<types.LoginResponseType>(
+        return await axios.post<types.LoginResponseType>(
             urls.auth.login(),
             {
                 email: email,
@@ -20,7 +21,7 @@ export class Auth {
         email: string,
         password: string
     ): Promise<AxiosResponse<types.authType>> {
-        return await $voxmentor_api_public.post<types.authType>(
+        return await axios.post<types.authType>(
             urls.auth.registration(),
             {
                 email: email,

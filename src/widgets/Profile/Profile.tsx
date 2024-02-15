@@ -1,5 +1,4 @@
 "use client";
-import { Context } from "@/shared/api";
 import style from "./Profile.module.css";
 import { observer } from "mobx-react-lite";
 import React from "react";
@@ -16,7 +15,7 @@ export const Profile = observer(() => {
     let search = path.get("123");
     let test = usePathname();
     const current = new URLSearchParams(Array.from(path.entries()));
-    const {store} = useProfile() 
+    const { store } = useProfile();
     // console.log(search);
     // console.log(path);
     // console.log(current);
@@ -35,19 +34,18 @@ export const Profile = observer(() => {
                     ></div>
                 </Link>
             ) : (
-                <Link className={style.link} href={"/login"}>
-                    <ProfileIcon
-                        size="30"
-                        color="#000000"
-                        onClick={() => {
-                            // current.set("123", "lox3");
-                            // current.set("123", "lox3");
-                            // const search = current.toString();
-                            // const query = search ? `?${search}` : "";
-                            // router.push(`${pathname}${query}`);
-                        }}
-                    />
-                </Link>
+                <ProfileIcon
+                    size="30"
+                    color="#ffffff"
+                    onClick={() => {
+                        router.push("/login");
+                        // current.set("123", "lox3");
+                        // current.set("123", "lox3");
+                        // const search = current.toString();
+                        // const query = search ? `?${search}` : "";
+                        // router.push(`${pathname}${query}`);
+                    }}
+                />
             )}
         </div>
     );

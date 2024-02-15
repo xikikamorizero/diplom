@@ -15,9 +15,8 @@ export const Header = () => {
                     </div>
                     <div className={style.logo}>
                         <Image
+                            className={style.icon_logo}
                             draggable={false}
-                            width={50}
-                            height={50}
                             src={logo}
                             alt={"logo"}
                         />
@@ -26,7 +25,9 @@ export const Header = () => {
                     <div className={style.linkContainer}>
                         <NavLink href={"/portfolio"} text={"portfolio"} />
                         <NavLink href={"/aboutUs"} text={"about"} />
-                        <Profile />
+                        <div className={style.profileContainer}>
+                            <Profile />
+                        </div>
                     </div>
                 </div>
             </div>

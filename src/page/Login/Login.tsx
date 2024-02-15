@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import style from "./Login.module.css";
+import { LoginForm } from "@/widgets";
 
 type PropsType = {
-    form: ReactNode;
     title: string;
 };
 
@@ -11,7 +11,7 @@ export const Login = ({ ...props }: PropsType) => {
         <div className={style.container}>
             <div className={style.login}>
                 <p className={style.title}>{props.title}</p>
-                {props.form}
+                <LoginForm />
             </div>
         </div>
     );

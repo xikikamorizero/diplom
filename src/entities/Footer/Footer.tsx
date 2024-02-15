@@ -1,4 +1,6 @@
 import style from "./Footer.module.css";
+import { BottomNavigation } from "@/shared";
+import { Profile } from "@/widgets";
 
 export const Footer = () => {
     return (
@@ -10,6 +12,7 @@ export const Footer = () => {
                 </a>{" "}
                 на Freepik
             </div>
+            <BottomNavigation profile={<Profile />} />
         </div>
     );
 };

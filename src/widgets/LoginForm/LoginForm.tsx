@@ -1,7 +1,7 @@
 "use client";
 import style from "./LoginForm.module.css";
 import { CloseCircle } from "iconsax-react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Context } from "@/shared/api";
 import Link from "next/link";
@@ -11,6 +11,12 @@ export const LoginForm = () => {
     const { store } = useContext(Context);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+        if (store.isAuth) {
+            router.push("/");
+        }
+    }, []);
 
     const Login = () => {
         store.auth

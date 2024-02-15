@@ -61,24 +61,6 @@ export const Profile = ({ ...props }: PropsType) => {
                     )}
                 </div>
                 {props.likeBlock}
-                {/* <div className={style.likesContainer}>
-                    <div
-                        className={`${style.likeAndDis} ${style.like} ${
-                            props.isLiked ? style.likeAndDisActive : null
-                        }`}
-                    >
-                        <div></div>
-                        <p>{props.user?.likes}</p>
-                    </div>
-                    <div
-                        className={`${style.likeAndDis} ${style.dislike} ${
-                            props.isDisliked ? style.likeAndDisActive : null
-                        }`}
-                    >
-                        <div></div>
-                        <p>{props.user?.dislikes}</p>
-                    </div>
-                </div> */}
                 <WrapperEditBlock
                     value={props.name}
                     setValue={props.setName}

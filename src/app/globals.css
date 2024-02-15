@@ -3,6 +3,7 @@
     padding: 0;
     border: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 html {
@@ -35,6 +36,9 @@ body {
     overflow: hidden;
 }
 
+
+@custom-media --mobile_adaptive (max-width: 895px);
+
 :root {
     --main_color: #fff;
     --secondary_color: #000000;
@@ -47,7 +51,14 @@ body {
     --container_width: 90%;
     --container_maxwidth: 1600px;
     --container_maxheight: 900px;
+    --mobile_adaptive: 895px;
 }
-.ce-inline-toolbar{
+.ce-inline-toolbar {
     background-color: var(--secondary_color);
+}
+
+@media (max-width: 1120px) {
+    .center {
+        padding: 20px 0 70px 0;
+    }
 }

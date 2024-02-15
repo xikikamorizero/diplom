@@ -8,7 +8,6 @@ export const $voxmentor_api_public = axios.create({
 });
 
 $voxmentor_api_public.interceptors.request.use((config: any) => {
-    // if (config.url.includes("/auth/login") || config.url.includes("/users")) {
     if (config.url.includes("/auth/login")) {
         return config;
     } else {
