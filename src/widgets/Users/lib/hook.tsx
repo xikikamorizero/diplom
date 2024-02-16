@@ -35,5 +35,6 @@ export const useUsers = () => {
         page: store.page,
         pageCount: store.page_count,
         limit: store.limit,
+        myId:global_store.store.profile?.id
     };
 };

@@ -22,7 +22,13 @@ export const Users = observer(() => {
             <Row gutter={[16, 16]}>
                 {data.users?.map((a, i) => (
                     <Col xs={xsmall} sm={small} md={middle} lg={large} key={i}>
-                        <Link href={`/users/${a.id}`}>
+                        <Link
+                            href={
+                                data.myId == a.id
+                                    ? "/profile"
+                                    : `/users/${a.id}`
+                            }
+                        >
                             <Card
                                 loading={false}
                                 src={a.avatar}

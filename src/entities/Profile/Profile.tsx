@@ -198,12 +198,14 @@ export const Profile = ({ ...props }: PropsType) => {
                     </div>
                 </div>
 
-                <Link
-                    href={portfolio ? "/createPortfolio" : "/createCourse"}
-                    className={style.create}
-                >
-                    {portfolio ? "Create Project" : "Create Course"}
-                </Link>
+                {props.myProf ? (
+                    <Link
+                        href={portfolio ? "/createPortfolio" : "/createCourse"}
+                        className={style.create}
+                    >
+                        {portfolio ? "Create Project" : "Create Course"}
+                    </Link>
+                ) : null}
             </div>
         </div>
     );

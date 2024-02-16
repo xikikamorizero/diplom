@@ -103,7 +103,7 @@
 }
 .projectWrapper {
     width: 100%;
-    height: 450px;
+    height: 400px;
     overflow-y: scroll;
 }
 .projectWrapper::-webkit-scrollbar {
@@ -174,5 +174,8 @@
     }
     .projectContainer{
         grid-template-columns: 1fr;
+    }
+    .projectWrapper{
+        height: 300px;
     }
 }

@@ -6,8 +6,9 @@ import { Header, Footer } from "@/entities";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Diplom",
-    description: "Diplom web project",
+    title: "VoxMentor",
+    description:
+        "VoxMentor is an innovative platform designed to make it easier to find and access information about teachers.",
 };
 
 export default function RootLayout({

@@ -14,12 +14,12 @@
 }
 .title {
     color: var(--secondary_text_color);
-    font-size: 15px;
     font-weight: 600;
-    height: 22px;
 }
 .subtitle {
     color: var(--subtitle_text_color);
+}
+.titleContainer {
     font-size: 15px;
-    height: 22px;
+    height: 45px;
 }

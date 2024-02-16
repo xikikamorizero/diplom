@@ -40,21 +40,23 @@ export const Card = ({ ...props }: PropsType) => {
                     />
                 }
             >
-                <Meta
-                    style={{ margin: "0", padding: "0" }}
-                    title={
-                        <p className={style.title}>
-                            {props.title ? props.title : "undefined"}
-                        </p>
-                    }
-                    description={
-                        props.subtitle ? (
-                            <p className={style.subtitle}>
-                                {props.subtitle ? props.subtitle : "null"}
+                <div className={style.titleContainer}>
+                    <Meta
+                        style={{ margin: "0", padding: "0" }}
+                        title={
+                            <p className={style.title}>
+                                {props.title ? props.title : "undefined"}
                             </p>
-                        ) : null
-                    }
-                />
+                        }
+                        description={
+                            props.subtitle ? (
+                                <p className={style.subtitle}>
+                                    {props.subtitle ? props.subtitle : "dsdsds"}
+                                </p>
+                            ) : null
+                        }
+                    />
+                </div>
             </CardAnt>
         </Skeleton>
     );
