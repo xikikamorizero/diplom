@@ -15,6 +15,8 @@ export const usePortfolio = ({ portfolioId }: PropsType) => {
 
     const [editMode, setEditMode] = useState(false);
     const [title, setTitle] = useState("");
+    const [category, setCategory] = useState("");
+    const [type, setType] = useState("");
     const [uploadedImages, setUploadedImages] = useState<File | null>(null);
     const [dataEditor, setDataEditor] = useState(
         store.portfolio?.content ? store.portfolio.content : "{}"
@@ -23,6 +25,8 @@ export const usePortfolio = ({ portfolioId }: PropsType) => {
         if (store.portfolio) {
             setTitle(store.portfolio.title);
             setDataEditor(store.portfolio.content);
+            setCategory(store.portfolio.category);
+            setType(store.portfolio.type);
         }
     }, [store.portfolio]);
 
@@ -30,7 +34,13 @@ export const usePortfolio = ({ portfolioId }: PropsType) => {
         global_store.store.portfolio
             .edit(
                 { id: portfolioId },
-                { title: title, content: dataEditor, image: uploadedImages }
+                {
+                    title: title,
+                    content: dataEditor,
+                    category,
+                    type,
+                    image: uploadedImages,
+                }
             )
             .then((response) => {
                 store.portfolio = response.data;
@@ -80,15 +90,19 @@ export const usePortfolio = ({ portfolioId }: PropsType) => {
         portfolio: store.portfolio,
         loading: store.loading,
         profile: global_store.store.profile,
-        EditPortfolio: EditPortfolio,
-        DeletePortfolio: DeletePortfolio,
-        editMode: editMode,
-        setEditMode: setEditMode,
-        title: title,
-        setTitle: setTitle,
-        uploadedImages: uploadedImages,
-        setUploadedImages: setUploadedImages,
-        dataEditor: dataEditor,
-        setDataEditor: setDataEditor,
+        EditPortfolio,
+        DeletePortfolio,
+        editMode,
+        setEditMode,
+        title,
+        setTitle,
+        category,
+        setCategory,
+        type,
+        setType,
+        uploadedImages,
+        setUploadedImages,
+        dataEditor,
+        setDataEditor,
     };
 };

@@ -43,7 +43,7 @@ class Course {
     public readonly create = services.Course.create;
     public readonly getCourseById = services.Course.getCourseById;
 }
-class Lesson{
+class Lesson {
     constructor() {
         makeAutoObservable(this);
     }
@@ -62,9 +62,9 @@ export class Store {
     public profile: types.userType | null = null;
     public loader = false;
     public error = 0;
-    public isAuth = false;
+    public isAuth: boolean = false;
     private token: string | null = null;
-    public update_profile:boolean=false;
+    public update_profile: boolean = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -82,7 +82,7 @@ export class Store {
         localStorage.setItem("token", JSON.stringify(this.token));
     }
 
-    updateProfile(){
+    updateProfile() {
         this.update_profile = !this.update_profile;
     }
 }

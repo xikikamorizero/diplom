@@ -33,7 +33,9 @@
     background-size: cover;
 }
 .buttonCreate {
-    width: max-content;
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
     font-size: 30px;
     padding: 5px 10px;
     text-transform: uppercase;

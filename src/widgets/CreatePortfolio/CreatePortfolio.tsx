@@ -5,55 +5,59 @@ import { Context } from "@/shared/api";
 import { useRouter } from "next/navigation";
 import { EditorJsEdit } from "../../entities/EditorJsEdit/EditorJsEdit";
 import { ImageInput } from "@/shared";
+import { useCreatePortfolio } from "./lib/hook";
 
 export const CreatePortfolio = () => {
-    const [loading, setLoading] = useState(false);
-    const [data, setData] = useState("");
-    const [title, setTitle] = useState("");
-    const [uploadedImages, setUploadedImages] = useState<File|null>(null);
-
-    const { store } = useContext(Context);
-    let router = useRouter();
-    console.log(data);
-
-    function Create() {
-        if (!loading) {
-            setLoading(true);
-            store.portfolio
-                .create({ title: title, content: data, image: uploadedImages })
-                .then((response) => {
-                    router.push("/profile");
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-                .finally(() => {
-                    setLoading(false);
-                });
-        }
-    }
+    const data = useCreatePortfolio();
     return (
         <div className={style.wrapper}>
             <div className={style.container}>
                 <input
-                    value={title}
+                    value={data.title}
+                    disabled={data.loading}
                     onChange={(e) => {
-                        setTitle(e.target.value);
+                        data.setTitle(e.target.value);
                     }}
                     type={"text"}
                     className={style.inputTitle}
                     placeholder={"add title"}
                 />
+                <input
+                    value={data.category}
+                    disabled={data.loading}
+                    onChange={(e) => {
+                        data.setCategory(e.target.value);
+                    }}
+                    type={"text"}
+                    className={style.inputTitle}
+                    placeholder={"add category"}
+                />
+                <input
+                    value={data.type}
+                    disabled={data.loading}
+                    onChange={(e) => {
+                        data.setType(e.target.value);
+                    }}
+                    type={"text"}
+                    className={style.inputTitle}
+                    placeholder={"add type"}
+                />
                 <div className={style.inputImage}>
-                    <ImageInput image={uploadedImages} setImage={setUploadedImages} />
+                    <ImageInput
+                        image={data.uploadedImages}
+                        setImage={data.setUploadedImages}
+                    />
                 </div>
 
-                <EditorJsEdit editorData={data} setEditorData={setData} />
+                <EditorJsEdit
+                    editorData={data.data}
+                    setEditorData={data.setData}
+                />
                 <button
-                    disabled={loading}
+                    disabled={data.loading}
                     className={style.buttonCreate}
                     onClick={() => {
-                        Create();
+                        data.Create();
                     }}
                 >
                     Create
@@ -62,64 +66,3 @@ export const CreatePortfolio = () => {
         </div>
     );
 };
-
-// const EditorJs = (props) => {
-//     const ejInstance = useRef();
-
-//     const initEditor = () => {
-//         const editor = new EditorJS({
-//             holder: "editorjs",
-//             onReady: () => {
-//                 ejInstance.current = editor;
-//             },
-//             autofocus: true,
-//             data: props.editorData,
-//             onChange: async () => {
-//                 let content = await editor.saver.save();
-//                 props.setEditorData(JSON.stringify(content));
-//             },
-//             tools: {
-//                 header: {
-//                     class: Header,
-//                     inlineToolbar: true,
-//                 },
-//                 paragraph: {
-//                     class: Paragraph,
-//                     inlineToolbar: true,
-//                 },
-//                 list: {
-//                     class: List,
-//                     inlineToolbar: true,
-//                 },
-//                 checklist: Checklist,
-//                 quote: Quote,
-//                 warning: Warning,
-//                 code: Code,
-//                 image: SimpleImage,
-//                 table: Table,
-//                 inlineCode: InlineCode,
-//                 marker: Marker,
-//                 delimiter: Delimiter,
-//                 raw: Raw,
-//                 Math: EJLaTeX,
-//             },
-//         });
-//     };
-
-//     useEffect(() => {
-//         if (ejInstance.current === null) {
-//             initEditor();
-//         }
-
-//         return () => {
-//             ejInstance?.current?.destroy();
-//             ejInstance.current = null;
-//         };
-//     }, []);
-
-//     return (
-//         <>
-//             <div id="editorjs" className={style.editorJs}></div>
-//         </>
-//     );
-// };

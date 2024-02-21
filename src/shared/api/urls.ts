@@ -1,9 +1,9 @@
 export const auth = {
     login() {
-        return "/auth/login";
+        return "http://localhost:5000/auth/login";
     },
     registration() {
-        return "/auth/registration";
+        return "http://localhost:5000/auth/registration";
     },
 };
 

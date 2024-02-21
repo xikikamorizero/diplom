@@ -1,10 +1,10 @@
 "use client";
-import style from "./EditorJs.module.css";
+import "./EditorJs.css";
 import "react-markdown-editor-lite/lib/index.css";
 import "@blocknote/core/style.css";
 import "react-quill/dist/quill.snow.css";
 import "katex/dist/katex.min.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import Paragraph from "@editorjs/paragraph";
@@ -29,7 +29,9 @@ export const EditorJs = (props) => {
                 editor.render(
                     !props.editMode ? props.editorData : props.dataEditor
                 );
-                const editorBlocks = document.querySelectorAll('.codex-editor.codex-editor--empty');
+                const editorBlocks = document.querySelectorAll(
+                    ".codex-editor.codex-editor--empty"
+                );
                 if (editorBlocks.length > 1) {
                     editorBlocks[1].remove();
                 }
@@ -78,7 +80,7 @@ export const EditorJs = (props) => {
 
     return (
         <>
-            <div id="editorjs" className={style.editorJs}></div>
+            <div id="editorjs" className={props.editMode? "editorJsEdit":"editorJs"}></div>
         </>
     );
 };

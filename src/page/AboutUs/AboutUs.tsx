@@ -1,5 +1,5 @@
-import { WithWrapper } from "@/features/hoc/authRedirect";
 import styled from "../AboutUs/AboutUs.module.css";
+import { WithWrapper } from "@/features/hoc/authRedirect";
 
 type Props = {
     title?: string;

@@ -34,7 +34,7 @@ export const LoginForm = () => {
                     .catch();
             })
             .catch((error) => {
-                console.log(error);
+                console.log('что за хуйня ?');
             });
     };
 

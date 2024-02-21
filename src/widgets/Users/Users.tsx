@@ -4,8 +4,10 @@ import { Row, Col, Pagination } from "antd";
 import { useUsers } from "./lib/hook";
 import { observer } from "mobx-react-lite";
 import { Card } from "@/shared";
-import { useContext } from "react";
+import { InputFilter } from "@/entities/InputFilter/InputFilter";
+import { useContext, useState } from "react";
 import { Context } from "./lib/context";
+import { SearchNormal1, FilterSquare } from "iconsax-react";
 import Link from "next/link";
 
 export const Users = observer(() => {
@@ -15,10 +17,46 @@ export const Users = observer(() => {
     const xsmall = { span: 12 };
     const data = useUsers();
 
+    const [filter, setFilter] = useState(false);
+
     const { store } = useContext(Context);
 
     return (
         <div className={style.container}>
+            <div className={style.filterContainer}>
+                <p className={style.title}>Professor</p>
+                <div className={style.filterPanel}>
+                    <div className={style.secondaryFilterContainer}>
+                        <InputFilter
+                            value={data.placeOfWork}
+                            setValue={data.setPlaceOfWork}
+                            placeholder={"ВуЗ"}
+                        />
+                        <InputFilter
+                            value={data.scienceDegreets}
+                            setValue={data.setScienceDegreets}
+                            placeholder={"Категория"}
+                        />
+                    </div>
+
+                    <div className={style.inputSearchContainer}>
+                        <InputFilter
+                            type={"search"}
+                            value={data.keyword}
+                            setValue={data.setKeyword}
+                            placeholder={"введите имя"}
+                        />
+                        <SearchNormal1 className={style.iconSearch} />
+                    </div>
+                    <FilterSquare
+                        className={style.filterButton}
+                        onClick={() => {
+                            setFilter(!filter);
+                        }}
+                    />
+                </div>
+            </div>
+
             <Row gutter={[16, 16]}>
                 {data.users?.map((a, i) => (
                     <Col xs={xsmall} sm={small} md={middle} lg={large} key={i}>

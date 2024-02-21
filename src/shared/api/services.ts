@@ -9,36 +9,36 @@ export class Auth {
         email: string,
         password: string
     ): Promise<AxiosResponse<types.LoginResponseType>> {
-        return await axios.post<types.LoginResponseType>(
-            urls.auth.login(),
-            {
-                email: email,
-                password: password,
-            }
-        );
+        return await axios.post<types.LoginResponseType>(urls.auth.login(), {
+            email: email,
+            password: password,
+        });
     }
     static async registration(
         email: string,
         password: string
     ): Promise<AxiosResponse<types.authType>> {
-        return await axios.post<types.authType>(
-            urls.auth.registration(),
-            {
-                email: email,
-                password: password,
-            }
-        );
+        return await axios.post<types.authType>(urls.auth.registration(), {
+            email: email,
+            password: password,
+        });
     }
 }
 export class User {
     static async getUsers({
+        keyword,
+        place_of_work,
+        science_degree,
         page,
         limit,
-    }: types.defaultParamType): Promise<AxiosResponse<types.usersType>> {
+    }: types.usersParamType): Promise<AxiosResponse<types.usersType>> {
         return await $voxmentor_api_public.get<types.usersType>(
             urls.user.get(),
             {
                 params: {
+                    keyword,
+                    place_of_work,
+                    science_degree,
                     page,
                     limit,
                 },
@@ -75,25 +75,31 @@ export class User {
         );
     }
 
-    static async editProfile(
-        { 
+    static async editProfile({
+        name,
+        image,
+        description,
+        place_of_work,
+        science_degree,
+        categories,
+        contacts,
+    }: types.editProfile): Promise<AxiosResponse<types.userType>> {
+        const formData = new FormData();
+
+        const fields = {
             name,
             image,
             description,
             place_of_work,
             science_degree,
             categories,
-            contacts
-         }: types.editProfile
-    ): Promise<AxiosResponse<types.userType>> {
-        const formData = new FormData();
-
-        const fields = { name, image, description, place_of_work, science_degree, categories, contacts };
+            contacts,
+        };
 
         Object.entries(fields).forEach(([key, value]) => {
-          if (value) {
-            formData.append(key, value);
-          }
+            if (value) {
+                formData.append(key, value);
+            }
         });
 
         return await $voxmentor_api_public.put<types.userType>(
@@ -171,15 +177,18 @@ export class User {
 
 export class Portfolio {
     static async getPortfolio({
+        keyword,
+        category,
+        type,
         page,
         limit,
-    }: types.defaultParamType): Promise<
+    }: types.portfolioParamType): Promise<
         AxiosResponse<types.PortfolioListType>
     > {
         return await $voxmentor_api_public.get<types.PortfolioListType>(
             urls.portfolio.get(),
             {
-                params: { page, limit },
+                params: { keyword, category, type, page, limit },
             }
         );
     }
@@ -198,11 +207,15 @@ export class Portfolio {
     static async create({
         title,
         content,
+        category,
+        type,
         image,
     }: types.createPortfolio): Promise<AxiosResponse<types.PortfolioType>> {
         const formData = new FormData();
         formData.append("title", title);
         formData.append("content", content);
+        formData.append("category", category);
+        formData.append("type", type);
         formData.append("image", image);
         return await $voxmentor_api_public.post<types.PortfolioType>(
             urls.portfolio.create(),
@@ -212,11 +225,13 @@ export class Portfolio {
 
     static async edit(
         { id }: types.ID,
-        { title, content, image }: types.createPortfolio
+        { title, content, category, type, image }: types.createPortfolio
     ): Promise<AxiosResponse<types.PortfolioType>> {
         const formData = new FormData();
         formData.append("title", title);
         formData.append("content", content);
+        formData.append("category", category);
+        formData.append("type", type);
         formData.append("image", image);
         return await $voxmentor_api_public.put<types.PortfolioType>(
             urls.portfolio.edit(id),

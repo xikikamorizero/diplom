@@ -15,7 +15,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background: #000;
+    background: var(--secondary_color);
     color: var(--main_text_color);
     /* background-image: url(../assets/background.jpg); */
     background-position: center;
@@ -35,15 +35,18 @@ body {
     padding: 10px 0;
     overflow: hidden;
 }
+input:focus {
+    outline: none;
+}
 
 
 @custom-media --mobile_adaptive (max-width: 895px);
 
 :root {
-    --main_color: #fff;
-    --secondary_color: #000000;
-    --main_text_color: #ffffff;
-    --secondary_text_color: #000;
+    --main_color: #d3d3d3;
+    --secondary_color: #0e0e0e;
+    --main_text_color: #d3d3d3;
+    --secondary_text_color: #0e0e0e;
     --subtitle_text_color: #3b3b3b;
     --delete: #eb1616;
     --sub_color: #545454;
@@ -59,6 +62,6 @@ body {
 
 @media (max-width: 1120px) {
     .center {
-        padding: 20px 0 70px 0;
+        padding: 20px 0 90px 0;
     }
 }

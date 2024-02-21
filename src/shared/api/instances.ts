@@ -8,17 +8,13 @@ export const $voxmentor_api_public = axios.create({
 });
 
 $voxmentor_api_public.interceptors.request.use((config: any) => {
-    if (config.url.includes("/auth/login")) {
-        return config;
+    if (!localStorage.getItem("token")) {
+        throw new Error("not authorized", config.url);
     } else {
-        if (!localStorage.getItem("token")) {
-            throw new Error("not authorized", config.url);
-        } else {
-            config.headers.Authorization = `Bearer ${localStorage.getItem(
-                "token"
-            )}`;
-            return config;
-        }
+        config.headers.Authorization = `Bearer ${localStorage.getItem(
+            "token"
+        )}`;
+        return config;
     }
 });
 

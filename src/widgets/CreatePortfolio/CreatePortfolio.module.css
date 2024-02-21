@@ -22,18 +22,20 @@
     background-color: var(--sub_color);
     border: 1px solid var(--main_color);
 }
-.inputImage{
+.inputImage {
     width: 300px;
     height: 200px;
     background-color: var(--sub_color);
     border: 1px solid var(--main_color);
-   
+
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 .buttonCreate {
-    width: max-content;
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
     font-size: 30px;
     padding: 5px 10px;
     text-transform: uppercase;

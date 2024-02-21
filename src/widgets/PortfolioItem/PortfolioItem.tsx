@@ -6,10 +6,10 @@ import React from "react";
 import { EditorJs } from "@/entities/EditorJs/EditorJs";
 import "./index.css";
 
-type PropsType={
-    portfolioId:string
-}
-export const PortfolioItem = observer(({portfolioId}:PropsType) => {
+type PropsType = {
+    portfolioId: string;
+};
+export const PortfolioItem = observer(({ portfolioId }: PropsType) => {
     const data = usePortfolio({
         portfolioId: portfolioId,
     });
@@ -38,6 +38,37 @@ export const PortfolioItem = observer(({portfolioId}:PropsType) => {
                         editorData={JSON.parse(data.portfolio.content)}
                     />
                 ) : null}
+
+                {!data.editMode ? (
+                    <p className={style.subInfo}>
+                        category:{data.portfolio?.category}
+                    </p>
+                ) : (
+                    <input
+                        className={`${style.subInput} ${style.subInfo}`}
+                        value={data.category}
+                        onChange={(e) => {
+                            data.setCategory(e.target.value);
+                        }}
+                        type={"text"}
+                        placeholder={"editCategory"}
+                    />
+                )}
+
+                {!data.editMode ? (
+                    <p className={style.subInfo}>type:{data.portfolio?.type}</p>
+                ) : (
+                    <input
+                        className={`${style.subInput} ${style.subInfo}`}
+                        value={data.type}
+                        onChange={(e) => {
+                            data.setType(e.target.value);
+                        }}
+                        type={"text"}
+                        placeholder={"editType"}
+                    />
+                )}
+
                 {data.profile?.id == data.portfolio?.userId && (
                     <div className={style.buttonContainer}>
                         <button

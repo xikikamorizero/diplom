@@ -1,10 +1,13 @@
-import style from './Portfolio.module.css';
-import { Portfolio as PortfolioPage } from '@/widgets';
+import style from "./Portfolio.module.css";
+import { Portfolio as PortfolioPage } from "@/widgets";
+import { WithWrapper } from "@/features/hoc/authRedirect";
 
-export const Portfolio=()=>{
-    return(
+export const Portfolio = () => {
+    return (
         <div className={style.container}>
-            <PortfolioPage />
+            <WithWrapper>
+                <PortfolioPage />
+            </WithWrapper>
         </div>
-    )
-}
+    );
+};

@@ -1,5 +1,6 @@
 "use client";
 import style from "./EditPortfolio.module.css";
+import { WithWrapper } from "@/features/hoc/authRedirect";
 import Markdown from "react-markdown";
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
@@ -20,7 +21,7 @@ import Quote from "@editorjs/quote";
 import Warning from "@editorjs/warning";
 import Code from "@editorjs/code";
 import Table from "@editorjs/table";
-import Image from "@editorjs/image"
+import Image from "@editorjs/image";
 import InlineCode from "@editorjs/inline-code";
 import Marker from "@editorjs/marker";
 import Delimiter from "@editorjs/delimiter";
@@ -43,7 +44,9 @@ export const EditPortfolio = () => {
                     editable={true}
                 /> */}
                 {/* <EditorPage /> */}
-                <EditorJs />
+                <WithWrapper>
+                    <EditorJs />
+                </WithWrapper>
             </div>
         </div>
     );

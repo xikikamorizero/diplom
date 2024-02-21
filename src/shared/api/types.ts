@@ -8,6 +8,8 @@ export interface authType {
 export interface createPortfolio {
     title: string;
     content: string;
+    category: string;
+    type: string;
     image: any;
 }
 export interface createCourse {
@@ -53,6 +55,20 @@ export interface DeleteResponse {
 }
 export interface LoginResponseType {
     token: string;
+}
+export interface usersParamType {
+    keyword: string;
+    place_of_work: string;
+    science_degree: string;
+    page: number;
+    limit: number;
+}
+export interface portfolioParamType {
+    keyword: string;
+    category: string;
+    type: string;
+    page: number;
+    limit: number;
 }
 export interface defaultParamType {
     page: number;
@@ -142,6 +158,8 @@ export interface PortfolioType {
     id: number;
     title: string;
     content: string;
+    category: string;
+    type: string;
     image: string | null;
     docs: string | null;
     userId: number;
